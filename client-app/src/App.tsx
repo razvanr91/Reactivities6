@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
-import "./App.css";
+// import "./App.css";
+
 import axios from "axios";
+import { Col, Container, ListGroup, Navbar } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
 	const [activities, setActivities] = useState([]);
@@ -14,15 +18,24 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<ul>
-					{activities.map((activity: any) => {
-						return <li key={activity.id}>{activity.title}</li>;
-					})}
-				</ul>
-			</header>
+		<div>
+			<Navbar>
+				<Navbar.Brand className="ms-1">
+					<FontAwesomeIcon icon={faUsers} /> Reactivities
+				</Navbar.Brand>
+			</Navbar>
+			<ListGroup as="ul" className="mt-5">
+				{activities.map((activity: any) => {
+					return (
+						<Col xl="1">
+							<ListGroup.Item as="li" key={activity.id}>
+								{activity.title}
+							</ListGroup.Item>
+						</Col>
+					);
+				})}
+			</ListGroup>
+			<ul></ul>
 		</div>
 	);
 }
