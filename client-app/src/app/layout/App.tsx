@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-// import "./App.css";
-
 import axios from "axios";
-import { Col, Container, ListGroup, Navbar } from "react-bootstrap";
+import { Col, ListGroup, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,15 +22,15 @@ function App() {
 				</Navbar.Brand>
 			</Navbar>
 			<ListGroup as="ul" className="mt-5">
-				{activities.map((activity: any) => {
-					return (
-						<Col xl="1">
+				<Col xl="1">
+					{activities.map((activity: any) => {
+						return (
 							<ListGroup.Item as="li" key={activity.id}>
 								{activity.title}
 							</ListGroup.Item>
-						</Col>
-					);
-				})}
+						);
+					})}
+				</Col>
 			</ListGroup>
 			<ul></ul>
 		</div>
