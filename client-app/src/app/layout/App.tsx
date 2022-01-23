@@ -3,12 +3,14 @@ import axios from "axios";
 import { Col, ListGroup, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { Activity } from "../models/activity";
+import NavBar from "./NavBar";
 
 function App() {
-	const [activities, setActivities] = useState([]);
+	const [activities, setActivities] = useState<Activity[]>([]);
 
 	useEffect(() => {
-		axios.get("https://localhost:5001/api/activities").then((response) => {
+		axios.get<Activity[]>("https://localhost:5001/api/activities").then((response) => {
 			console.log(response);
 			setActivities(response.data);
 		});
@@ -16,14 +18,10 @@ function App() {
 
 	return (
 		<div>
-			<Navbar>
-				<Navbar.Brand className="ms-1">
-					<FontAwesomeIcon icon={faUsers} /> Reactivities
-				</Navbar.Brand>
-			</Navbar>
+			<NavBar />
 			<ListGroup as="ul" className="mt-5">
 				<Col xl="1">
-					{activities.map((activity: any) => {
+					{activities.map((activity) => {
 						return (
 							<ListGroup.Item as="li" key={activity.id}>
 								{activity.title}
