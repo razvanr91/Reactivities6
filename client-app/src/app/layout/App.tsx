@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
-import { Col, ListGroup, Navbar } from "react-bootstrap";
+import { Col, Container, ListGroup, Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Activity } from "../models/activity";
@@ -17,21 +17,22 @@ function App() {
 	}, []);
 
 	return (
-		<div>
+		<Fragment>
 			<NavBar />
-			<ListGroup as="ul" className="mt-5">
-				<Col xl="1">
-					{activities.map((activity) => {
-						return (
-							<ListGroup.Item as="li" key={activity.id}>
-								{activity.title}
-							</ListGroup.Item>
-						);
-					})}
-				</Col>
-			</ListGroup>
-			<ul></ul>
-		</div>
+			<Container style={{ marginTop: "7em" }}>
+				<ListGroup as="ul">
+					<Col xl="1">
+						{activities.map((activity) => {
+							return (
+								<ListGroup.Item as="li" key={activity.id}>
+									{activity.title}
+								</ListGroup.Item>
+							);
+						})}
+					</Col>
+				</ListGroup>
+			</Container>
+		</Fragment>
 	);
 }
 

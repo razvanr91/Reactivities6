@@ -5,15 +5,15 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 export default function NavBar() {
 	return (
-		<Navbar fixed="top">
+		<Navbar id="navbarComponent" fixed="top">
 			<Container>
-				<Navbar.Brand>
-					<FontAwesomeIcon icon={faUsers} /> Reactivities
+				<Navbar.Brand className="text-white">
+					<FontAwesomeIcon icon={faUsers} className="me-2" /> Reactivities
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav>
-						<Nav.Link href="#" className="mt-2">
+						<Nav.Link href="#" className="mt-2 text-white">
 							Home
 						</Nav.Link>
 						<Nav.Link href="#">
