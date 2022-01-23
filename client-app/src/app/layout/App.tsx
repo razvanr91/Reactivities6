@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
+import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 
 function App() {
 	const [activities, setActivities] = useState<Activity[]>([]);
@@ -20,17 +21,7 @@ function App() {
 		<Fragment>
 			<NavBar />
 			<Container style={{ marginTop: "7em" }}>
-				<ListGroup as="ul">
-					<Col xl="1">
-						{activities.map((activity) => {
-							return (
-								<ListGroup.Item as="li" key={activity.id}>
-									{activity.title}
-								</ListGroup.Item>
-							);
-						})}
-					</Col>
-				</ListGroup>
+				<ActivityDashboard activities={activities} />
 			</Container>
 		</Fragment>
 	);
