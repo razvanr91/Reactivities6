@@ -33,7 +33,7 @@ export default function ActivityForm({ activity, closeForm, createOrEdit }: Prop
 
 	return (
 		<Fragment>
-			<Container className="bg-white">
+			<Container style={{ marginTop: "1rem" }} className="bg-white">
 				<Form onSubmit={handleSubmit} autoComplete="off">
 					<Form.Group>
 						<Form.Label className="mt-2">Title</Form.Label>
@@ -55,7 +55,7 @@ export default function ActivityForm({ activity, closeForm, createOrEdit }: Prop
 					</Form.Group>
 					<Form.Group>
 						<Form.Label className="mt-2">Date</Form.Label>
-						<Form.Control placeholder="When?" type="text" value={newActivity.date} name="date" onChange={handleInputChange} />
+						<Form.Control type="date" placeholder="When?" value={newActivity.date} name="date" onChange={handleInputChange} />
 					</Form.Group>
 					<Form.Group>
 						<Form.Label className="mt-2">City</Form.Label>
