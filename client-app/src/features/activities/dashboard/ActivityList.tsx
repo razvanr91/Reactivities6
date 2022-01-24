@@ -12,7 +12,6 @@ export default function ActivityList({ activities }: Props) {
 			{activities.map((activity) => {
 				return (
 					<Card key={activity.id} className="my-3">
-						<Card.Img variant="top" />
 						<Card.Body>
 							<Card.Title className="fw-bolder">{activity.title}</Card.Title>
 							<Card.Subtitle className="text-muted fs-6">{activity.date}</Card.Subtitle>
