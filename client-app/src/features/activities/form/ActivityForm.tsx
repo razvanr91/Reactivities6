@@ -1,7 +1,13 @@
 import React, { Fragment } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
+import { Activity } from "../../../app/models/activity";
 
-export default function ActivityForm() {
+interface Props {
+	activity: Activity | undefined;
+	closeForm: () => void;
+}
+
+export default function ActivityForm({ activity, closeForm }: Props) {
 	return (
 		<Fragment>
 			<Container className="bg-white">
@@ -33,7 +39,7 @@ export default function ActivityForm() {
 					<Button className="my-3 float-end" variant="primary" type="submit">
 						Submit
 					</Button>
-					<Button className="my-3" variant="secondary" type="button">
+					<Button onClick={closeForm} className="my-3" variant="secondary" type="button">
 						Cancel
 					</Button>
 				</Form>

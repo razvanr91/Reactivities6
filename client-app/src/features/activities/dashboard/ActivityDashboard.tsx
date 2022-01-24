@@ -10,9 +10,20 @@ interface Props {
 	selectedActivity: Activity | undefined;
 	selectActivity: (id: string) => void;
 	cancelSelectActivity: () => void;
+	editMode: boolean;
+	openForm: (id: string) => void;
+	closeForm: () => void;
 }
 
-export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity }: Props) {
+export default function ActivityDashboard({
+	activities,
+	selectedActivity,
+	selectActivity,
+	cancelSelectActivity,
+	editMode,
+	openForm,
+	closeForm,
+}: Props) {
 	return (
 		<Fragment>
 			<Container className="d-flex">
@@ -20,8 +31,10 @@ export default function ActivityDashboard({ activities, selectedActivity, select
 					<ActivityList activities={activities} selectActivity={selectActivity} />
 				</Col>
 				<Col xl={4}>
-					{selectedActivity && <ActivityDetails activity={selectedActivity} cancelSelectActivity={cancelSelectActivity} />}
-					<ActivityForm />
+					{selectedActivity && !editMode && (
+						<ActivityDetails activity={selectedActivity} cancelSelectActivity={cancelSelectActivity} openForm={openForm} />
+					)}
+					{editMode && <ActivityForm closeForm={closeForm} activity={selectedActivity} />}
 				</Col>
 			</Container>
 		</Fragment>

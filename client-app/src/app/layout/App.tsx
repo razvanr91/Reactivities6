@@ -1,8 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
-import { Col, Container, ListGroup, Navbar } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { Container } from "react-bootstrap";
 import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
@@ -10,6 +9,7 @@ import ActivityDashboard from "../../features/activities/dashboard/ActivityDashb
 function App() {
 	const [activities, setActivities] = useState<Activity[]>([]);
 	const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
+	const [editMode, setEditMode] = useState(false);
 
 	useEffect(() => {
 		axios.get<Activity[]>("https://localhost:5001/api/activities").then((response) => {
@@ -26,15 +26,27 @@ function App() {
 		setSelectedActivity(undefined);
 	}
 
+	function handleFormOpen(id?: string) {
+		id ? handleSelectActivity(id) : handleCancelSelectActivity();
+		setEditMode(true);
+	}
+
+	function handleFormClose() {
+		setEditMode(false);
+	}
+
 	return (
 		<Fragment>
-			<NavBar />
+			<NavBar openForm={handleFormOpen} />
 			<Container style={{ marginTop: "7em" }}>
 				<ActivityDashboard
 					activities={activities}
 					selectedActivity={selectedActivity}
 					selectActivity={handleSelectActivity}
 					cancelSelectActivity={handleCancelSelectActivity}
+					editMode={editMode}
+					openForm={handleFormOpen}
+					closeForm={handleFormClose}
 				/>
 			</Container>
 		</Fragment>

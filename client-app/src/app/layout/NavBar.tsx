@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
-export default function NavBar() {
+interface Props {
+	openForm: () => void;
+}
+
+export default function NavBar({ openForm }: Props) {
 	return (
 		<Navbar id="navbarComponent" fixed="top">
 			<Container>
@@ -17,7 +21,9 @@ export default function NavBar() {
 							Home
 						</Nav.Link>
 						<Nav.Link href="#">
-							<Button variant="success">Create Activity</Button>
+							<Button onClick={openForm} variant="success">
+								Create Activity
+							</Button>
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
