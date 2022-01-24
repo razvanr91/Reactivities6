@@ -7,17 +7,20 @@ import ActivityList from "./ActivityList";
 
 interface Props {
 	activities: Activity[];
+	selectedActivity: Activity | undefined;
+	selectActivity: (id: string) => void;
+	cancelSelectActivity: () => void;
 }
 
-export default function ActivityDashboard({ activities }: Props) {
+export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity }: Props) {
 	return (
 		<Fragment>
 			<Container className="d-flex">
 				<Col xl={8} className="me-3">
-					<ActivityList activities={activities} />
+					<ActivityList activities={activities} selectActivity={selectActivity} />
 				</Col>
 				<Col xl={4}>
-					{activities[0] && <ActivityDetails activity={activities[0]} />}
+					{selectedActivity && <ActivityDetails activity={selectedActivity} cancelSelectActivity={cancelSelectActivity} />}
 					<ActivityForm />
 				</Col>
 			</Container>

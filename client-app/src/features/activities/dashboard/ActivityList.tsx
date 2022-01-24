@@ -6,9 +6,10 @@ import { Activity } from "../../../app/models/activity";
 
 interface Props {
 	activities: Activity[];
+	selectActivity: (id: string) => void;
 }
 
-export default function ActivityList({ activities }: Props) {
+export default function ActivityList({ activities, selectActivity }: Props) {
 	return (
 		<Fragment>
 			{activities.map((activity) => {
@@ -22,7 +23,7 @@ export default function ActivityList({ activities }: Props) {
 						<Badge pill className="col-1 mb-2 ms-2" bg="primary">
 							{activity.category}
 						</Badge>
-						<Button variant="primary" className="col-1 mb-2 me-2 align-self-end" size="sm">
+						<Button onClick={() => selectActivity(activity.id)} variant="primary" className="col-1 mb-2 me-2 align-self-end" size="sm">
 							View
 						</Button>
 						<Card.Footer className="text-muted">

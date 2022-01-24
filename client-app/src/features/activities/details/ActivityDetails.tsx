@@ -6,9 +6,10 @@ import { Activity } from "../../../app/models/activity";
 
 interface Props {
 	activity: Activity;
+	cancelSelectActivity: () => void;
 }
 
-export default function ActivityDetails({ activity }: Props) {
+export default function ActivityDetails({ activity, cancelSelectActivity }: Props) {
 	return (
 		<Card className="my-3">
 			<Card.Img className="p-0 m-0" variant="top" src={`assets/categoryImages/${activity.category}.jpg`} />
@@ -19,7 +20,7 @@ export default function ActivityDetails({ activity }: Props) {
 				<Button className="col-3 float-end" variant="primary">
 					Edit
 				</Button>
-				<Button className="col-3" variant="secondary">
+				<Button onClick={cancelSelectActivity} className="col-3" variant="secondary">
 					Cancel
 				</Button>
 			</Card.Body>
