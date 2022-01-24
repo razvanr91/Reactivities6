@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container } from "react-bootstrap";
 import { Activity } from "../../../app/models/activity";
 import ActivityDetails from "../details/ActivityDetails";
+import ActivityForm from "../form/ActivityForm";
 import ActivityList from "./ActivityList";
 
 interface Props {
@@ -15,7 +16,10 @@ export default function ActivityDashboard({ activities }: Props) {
 				<Col xl={8} className="me-3">
 					<ActivityList activities={activities} />
 				</Col>
-				<Col xl={4}>{activities[0] && <ActivityDetails activity={activities[0]} />}</Col>
+				<Col xl={4}>
+					{activities[0] && <ActivityDetails activity={activities[0]} />}
+					<ActivityForm />
+				</Col>
 			</Container>
 		</Fragment>
 	);
