@@ -1,14 +1,15 @@
 import React, { ChangeEvent, Fragment, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { Activity } from "../../../app/models/activity";
 
 interface Props {
 	activity: Activity | undefined;
 	closeForm: () => void;
 	createOrEdit: (activity: Activity) => void;
+	submitting: boolean;
 }
 
-export default function ActivityForm({ activity, closeForm, createOrEdit }: Props) {
+export default function ActivityForm({ activity, closeForm, createOrEdit, submitting }: Props) {
 	const initialState = activity ?? {
 		id: "",
 		title: "",
@@ -78,6 +79,7 @@ export default function ActivityForm({ activity, closeForm, createOrEdit }: Prop
 						/>
 					</Form.Group>
 					<Button className="my-3 float-end" variant="primary" type="submit">
+						{submitting && <Spinner animation={"border"} />}
 						Submit
 					</Button>
 					<Button onClick={closeForm} className="my-3" variant="secondary" type="button">
