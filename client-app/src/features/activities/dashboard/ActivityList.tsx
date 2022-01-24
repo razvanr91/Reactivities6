@@ -1,15 +1,16 @@
 import { faMapMarker } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Fragment } from "react";
-import { Badge, Button, Card } from "react-bootstrap";
+import { Badge, Button, Card, Row } from "react-bootstrap";
 import { Activity } from "../../../app/models/activity";
 
 interface Props {
 	activities: Activity[];
 	selectActivity: (id: string) => void;
+	deleteActivity: (id: string) => void;
 }
 
-export default function ActivityList({ activities, selectActivity }: Props) {
+export default function ActivityList({ activities, selectActivity, deleteActivity }: Props) {
 	return (
 		<Fragment>
 			{activities.map((activity) => {
@@ -23,9 +24,14 @@ export default function ActivityList({ activities, selectActivity }: Props) {
 						<Badge pill className="col-1 mb-2 ms-2" bg="primary">
 							{activity.category}
 						</Badge>
-						<Button onClick={() => selectActivity(activity.id)} variant="primary" className="col-1 mb-2 me-2 align-self-end" size="sm">
-							View
-						</Button>
+						<Row className="justify-content-end">
+							<Button onClick={() => deleteActivity(activity.id)} variant="danger" className="col-1 mb-2 me-2" size="sm">
+								Delete
+							</Button>
+							<Button onClick={() => selectActivity(activity.id)} variant="primary" className="col-1 mb-2 me-4" size="sm">
+								View
+							</Button>
+						</Row>
 						<Card.Footer className="text-muted">
 							<FontAwesomeIcon icon={faMapMarker} color="red" /> {activity.city}, {activity.venue}
 						</Card.Footer>

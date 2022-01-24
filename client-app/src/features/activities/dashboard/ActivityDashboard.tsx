@@ -14,6 +14,7 @@ interface Props {
 	openForm: (id: string) => void;
 	closeForm: () => void;
 	createOrEdit: (activity: Activity) => void;
+	deleteActivity: (id: string) => void;
 }
 
 export default function ActivityDashboard({
@@ -25,12 +26,13 @@ export default function ActivityDashboard({
 	openForm,
 	closeForm,
 	createOrEdit,
+	deleteActivity,
 }: Props) {
 	return (
 		<Fragment>
 			<Container className="d-flex">
 				<Col xl={8} className="me-3">
-					<ActivityList activities={activities} selectActivity={selectActivity} />
+					<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
 				</Col>
 				<Col xl={4}>
 					{selectedActivity && !editMode && (
