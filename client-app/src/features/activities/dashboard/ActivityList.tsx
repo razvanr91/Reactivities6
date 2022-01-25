@@ -1,16 +1,23 @@
 import { faMapMarker } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Fragment } from "react";
-import { Badge, Button, Card, Row } from "react-bootstrap";
+import React, { Fragment, SyntheticEvent, useState } from "react";
+import { Badge, Button, Card, Row, Spinner } from "react-bootstrap";
 import { Activity } from "../../../app/models/activity";
 
 interface Props {
 	activities: Activity[];
 	selectActivity: (id: string) => void;
 	deleteActivity: (id: string) => void;
+	submitting: boolean;
 }
 
-export default function ActivityList({ activities, selectActivity, deleteActivity }: Props) {
+export default function ActivityList({ activities, selectActivity, deleteActivity, submitting }: Props) {
+	const [target, setTarget] = useState("");
+
+	function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+		setTarget(e.currentTarget.name);
+		deleteActivity(id);
+	}
 	return (
 		<Fragment>
 			{activities.map((activity) => {
@@ -25,7 +32,8 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
 							{activity.category}
 						</Badge>
 						<Row className="justify-content-end">
-							<Button onClick={() => deleteActivity(activity.id)} variant="danger" className="col-1 mb-2 me-2" size="sm">
+							<Button name={activity.id} onClick={(e) => handleActivityDelete(e, activity.id)} variant="danger" className="col-1 mb-2 me-2" size="sm">
+								{submitting && target === activity.id && <Spinner animation={"border"} size="sm" />}
 								Delete
 							</Button>
 							<Button onClick={() => selectActivity(activity.id)} variant="primary" className="col-1 mb-2 me-4" size="sm">

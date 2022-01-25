@@ -34,7 +34,7 @@ export default function ActivityDashboard({
 		<Fragment>
 			<Container className="d-flex">
 				<Col xl={8} className="me-3">
-					<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
+					<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} submitting={submitting} />
 				</Col>
 				<Col xl={4}>
 					{selectedActivity && !editMode && (
